@@ -100,7 +100,12 @@ function setup_version {
 	EOF
 
 	# Do an npm install. Suppress all output, especially those huge trees. There is no CLI flag to turn that off :/
+<<<<<<< HEAD
 	npm install --only=production --silent &> /dev/null;
+=======
+	echo "Performing an npm install in ${VERSION_DIR}, this might take time...";
+	npm install --silent &> /dev/null;
+>>>>>>> origin/feature/improve-memcheck
 
 	# Setup is complete, go back to the original directory.
 	cd ${ORIG_DIR};
@@ -170,10 +175,12 @@ function main {
 	# Validate inputs
 	if [[ -z "${CONTROL_VERSION// }" ]]; then
 		echo "Control version not provided";
+		usage;
 		exit 1;
 	fi
 	if [[ -z "${TEST_VERSION// }" ]]; then
 		echo "Test version not provided";
+		usage;
 		exit 1;
 	fi
 
